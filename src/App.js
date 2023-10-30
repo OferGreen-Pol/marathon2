@@ -1,3 +1,13 @@
+// {
+//   "importOrderParserPlugins": ["decorators", "decorators-legacy"];
+
+// }
+// @font-face {  
+  
+//   font-family: Aduma;
+//   src: URL('./fonts/Aduma Regular.ttf');
+// }
+
 import './App.css';
 import Bg from './Bg'
 

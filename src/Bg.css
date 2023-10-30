@@ -6,7 +6,7 @@
     margin-top:150px;
     border-radius:8px; 
     box-shadow: 1px 1px 10px black;
-    background-color: gray;
+    background-color: #222A34;
 }
  /* 
     border:1px solid black; - type of border - width style color
@@ -31,7 +31,7 @@
 
   .header_btn{  
     float:left;
-    background-color: cornflowerblue;
+    background-color: #475366;
     margin-top: -50px;
     margin-left: 25px;
     border: none;
