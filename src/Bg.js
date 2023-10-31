@@ -12,7 +12,7 @@ function Bg() {
   function change_tab(e) {
     
     // debugger;
-    console.log(e.target);
+    // console.log(e.target);
     if(e.target.className==='no_bg') {
         setdisplay_no_bg_tab('no');
     } else {
