@@ -1,5 +1,7 @@
 import './Bg.css';
 import { useState } from 'react';
+import Original from './Original';
+import No_Bg from './No_bg';
 
 function Bg() {
 
@@ -7,9 +9,11 @@ function Bg() {
 
 //   const change_tab = () => {}
 
-  function change_tab() {
+  function change_tab(e) {
+    
     // debugger;
-    if(display_no_bg_tab==='yes') {
+    console.log(e.target);
+    if(e.target.className==='no_bg') {
         setdisplay_no_bg_tab('no');
     } else {
         setdisplay_no_bg_tab('yes');
@@ -30,15 +34,20 @@ function Bg() {
             <div className="left_div">
                 
                 <div className="main_div_tabs_header">   
-                    <span onClick={change_tab}> הסר רקע</span>
-                    <span onClick={change_tab}> מקורי</span>
+                    <span onClick={change_tab} className="no_bg" style={{borderBottom: display_no_bg_tab==="no" ? "1px solid #9C27B0" : ""}}> הסר רקע</span>
+                    <span onClick={change_tab} className="original" style={{borderBottom: display_no_bg_tab==="yes" ? "1px solid #9C27B0" : ""}}> מקורי</span>
                 </div>
 
                 {display_no_bg_tab==="yes" ? 
-                <div className="original_tab">original_tab</div>
-                :
-                <div className="no_bg_tab">no_bg_tab</div>
+                    <Original/>
+                    :
+                    <No_Bg/>
                 }
+
+                <div className="left_div_footer">
+                    <button className="eula_btn">תקנון החברה</button>
+                    <span className="eula_text">על ידי העלאת תמונה אתה מסכים לתנאים ולהגבלות</span>
+                </div>
             </div>
                 
             <div className="right_div">   

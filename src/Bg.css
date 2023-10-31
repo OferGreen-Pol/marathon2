@@ -133,3 +133,18 @@
     cursor: pointer;
     float: right;
   }
+
+  .no_bg {
+    /* border-bottom: 3px solid #9C27B0; */
+    border-bottom: "";
+  }
+
+  .original {
+    border-bottom: "";
+  }
+
+  .original_tab, .no_bg_tab {
+    /* border: 1px solid; */
+    height: 80%;
+    background-color: #161821;
+  }
