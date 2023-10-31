@@ -69,6 +69,7 @@
     float: left;
     border: 1px solid white;
     height: 100%;
+    color:white;
   }
 
   .right_div {   
@@ -112,4 +113,23 @@
     color: #03A9F4;
     border: 1px solid #03A9F4;
     margin-top: 14px;
+  }
+
+  .right_div_top{
+    border-bottom: 1px solid #9E9E9E;
+    width: 95%;
+    margin: 0 auto;
+    padding-bottom: 26px;
+  }
+
+  .main_div_tabs_header {
+    color:white;
+    background-color: #2F3F4B;
+    height: 45px;
+  }
+
+  .main_div_tabs_header span {
+    margin-left: 20px;
+    cursor: pointer;
+    float: right;
   }
