@@ -1,7 +1,7 @@
 .Bg{
     border:1px solid black; 
     width:800px;
-    height:500px;
+    height:650px;
     margin:0 auto;
     margin-top:150px;
     border-radius:8px; 
@@ -22,17 +22,17 @@
   .header_text{ 
     color:white;
     text-align: right;
-    font-size: 31px;
+    font-size: 40px;
     width: 100%;
     float: right;
     margin-right: 25px;
-    margin-top: 25px;
+    margin-top: 4px;
   }
 
   .header_btn{  
     float:left;
     background-color: #475366;
-    margin-top: -50px;
+    margin-top: -27px;
     margin-left: 25px;
     border: none;
     border-radius: 8px;
@@ -44,4 +44,72 @@
     color: white;
 
     /* background-image: url('./assets/Upload.jpg'); */
+  }
+
+  .header { 
+    position: relative;
+    height: 80px;
+  }
+
+  .header_subtext { 
+    color: white;
+    top: 27px;
+    position: absolute;
+    left: 154px;
+    direction: rtl; 
+  }
+
+  .main_div{    
+    /* border:1px solid white; */
+    height: 77%;
+  }
+
+  .left_div {   
+    width: 67%;
+    float: left;
+    border: 1px solid white;
+    height: 100%;
+  }
+
+  .right_div {   
+    width: 30%;
+    float: right;
+    /* border: 1px solid white; */
+    height: 100%;
+    background-color: #2F3F4B;
+    margin-right: 10px;
+    border-radius: 8px;
+  }
+
+  .right_div_middle_div {   
+    margin-top: 19%;
+    height: 80%;
+    background-color: #161B21;
+  }
+
+  .right_div_top_text {
+    text-align: right;
+    color: white;
+    font-size: 25px;
+    margin-right: 12px;
+    margin-top: 12px;
+  }
+
+  .right_div_top_subtext {
+    text-align: right;
+    color: white;
+    font-size: 25px;
+    margin-right: 12px;
+    margin-top: 12px;
+  }
+
+  .right_div_top_btn {
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: transparent;
+    color: #03A9F4;
+    border: 1px solid #03A9F4;
+    margin-top: 14px;
   }
