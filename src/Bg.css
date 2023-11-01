@@ -42,6 +42,7 @@
     background-repeat: no-repeat;
     background-position: 10px;
     color: white;
+    cursor: pointer;
 
     /* background-image: url('./assets/Upload.jpg'); */
   }
@@ -147,4 +148,22 @@
     /* border: 1px solid; */
     height: 80%;
     background-color: #161821;
+  }
+
+  .input_file{
+    display: none;
+  }
+
+  .eula_btn {
+    background-color: #495366;
+    border: none;
+    color: white;
+    font-size: 12px;
+    width: 102px;
+    height: 25px;
+    border-radius: 15px;
+    float: left;
+    margin: 15px;
+    padding-left: 20px;
+    cursor: pointer;
   }

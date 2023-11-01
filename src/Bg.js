@@ -1,11 +1,16 @@
 import './Bg.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Original from './Original';
 import No_Bg from './No_bg';
+import Eula from './Eula';
 
 function Bg() {
 
+  const inputElement = useRef();
+  
   const [display_no_bg_tab, setdisplay_no_bg_tab] = useState("no");
+
+  const [show_eula, setshow_eula] = useState(false);
 
 //   const change_tab = () => {}
 
@@ -20,11 +25,22 @@ function Bg() {
     }
   }
 
+  function upload_file() {
+    inputElement.current.click();
+  }
+
+  function open_eula() {
+    setshow_eula(true);
+  }
+
   return (
     <div className="Bg">
         <div className="header">   
             <span className='header_text'> העלאת תמונה בשביל להסיר את הרקע  </span>
-            <button className="header_btn"> העלאת תמונה   </button>
+            <button className="header_btn" onClick={upload_file}> העלאת תמונה   </button>
+
+            <input type="file" ref={inputElement} className='input_file'/>"
+
             <span className="header_subtext">  פורמטים נתמכים png, jpeg</span>
         </div>
 
@@ -45,8 +61,9 @@ function Bg() {
                 }
 
                 <div className="left_div_footer">
-                    <button className="eula_btn">תקנון החברה</button>
+                    <button className="eula_btn" onClick={open_eula}>תקנון החברה</button>
                     <span className="eula_text">על ידי העלאת תמונה אתה מסכים לתנאים ולהגבלות</span>
+                    {show_eula ? <Eula/> : ""}
                 </div>
             </div>
                 
