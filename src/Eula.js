@@ -16,7 +16,7 @@ function Eula(props) {
     return (
         <div className='eula_div'>
             {/* onCLick of 'X' call local 'close_popup' which called parent 'close_popup to affect parent's code */}
-            <img src={close} onClick={close_popup}/>
+            <img src={close} onClick={close_popup} className='eula_close_img'/>
             לורם איפסום דולור סיט אמט, קונסקטטור אדיפיסינג אלית קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק. להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורךגולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט. ושבעגט לבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
         
         </div>
