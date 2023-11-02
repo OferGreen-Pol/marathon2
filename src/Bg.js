@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import Original from './Original';
 import No_Bg from './No_bg';
 import Eula from './Eula';
+import axios from 'axios';
 
 function Bg() {
 
@@ -33,13 +34,71 @@ function Bg() {
     setshow_eula(true);
   }
 
+  function close_popup_func() {
+    setshow_eula(false);
+  }
+
+//   Call locahost:5000 (server) "/test" app.get in the server (contains information, doesn't get arguments)
+  function send_file_to_back(e) {
+
+    // debugger;
+    axios.get("http://localhost:5000/test")
+        .then( res => {
+        console.log(res);
+        })    
+
+    let data = e.target.files[0];
+
+    if(data.type === 'image/png' || data.type === 'image/jpg') {
+        // new Object (struct)
+        const formData = new FormData();
+
+        // axios.get("http://localhost:5000/test")
+        //     .then(function (response) {
+        //         console.log(response);
+        // })
+
+        // let axios_debug = axios.get("http://localhost:5000/test");
+
+        
+
+        const config = {
+            headers: {'content-type': 'multipart/form-data'}
+        }
+
+        formData.append(
+            "myfile",
+            data,
+            data.name
+        );
+
+        axios.post("http://localhost:5000/upload_file", formData, config)
+        .then(function (response) {
+        console.log(response);
+        })
+
+    } else {
+        alert('file type not supported');
+    }
+
+//     // debug - get message from test module in server
+//     axios.get("http://localhost:5000/test")
+//   .then(function (response) {
+//     console.log(response);
+//   }
+//   .then(function (response) {
+//     console.log(response);
+// .then(res => {
+//     console.log(res); }
+  }
+
   return (
     <div className="Bg">
         <div className="header">   
             <span className='header_text'> העלאת תמונה בשביל להסיר את הרקע  </span>
             <button className="header_btn" onClick={upload_file}> העלאת תמונה   </button>
 
-            <input type="file" ref={inputElement} className='input_file'/>"
+            <input type="file" ref={inputElement} onChange={send_file_to_back} className='input_file'/>"
 
             <span className="header_subtext">  פורמטים נתמכים png, jpeg</span>
         </div>
@@ -63,7 +122,7 @@ function Bg() {
                 <div className="left_div_footer">
                     <button className="eula_btn" onClick={open_eula}>תקנון החברה</button>
                     <span className="eula_text">על ידי העלאת תמונה אתה מסכים לתנאים ולהגבלות</span>
-                    {show_eula ? <Eula/> : ""}
+                    {show_eula ? <Eula close_popup={close_popup_func}/> : ""}
                 </div>
             </div>
                 
