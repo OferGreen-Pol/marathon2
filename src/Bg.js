@@ -13,6 +13,8 @@ function Bg() {
 
   const [show_eula, setshow_eula] = useState(false);
 
+  const [image_name, setimage_name] = useState("");
+
 //   const change_tab = () => {}
 
   function change_tab(e) {
@@ -42,10 +44,10 @@ function Bg() {
   function send_file_to_back(e) {
 
     // debugger;
-    axios.get("http://localhost:5000/test")
-        .then( res => {
-        console.log(res);
-        })    
+    // axios.get("http://localhost:5000/test")
+    //     .then( res => {
+    //     console.log(res);
+    //     })    
 
     let data = e.target.files[0];
 
@@ -67,7 +69,7 @@ function Bg() {
         }
 
         formData.append(
-            "myfile",
+            "myFile",
             data,
             data.name
         );
@@ -75,7 +77,9 @@ function Bg() {
         axios.post("http://localhost:5000/upload_file", formData, config)
         .then(function (response) {
         console.log(response);
+        setimage_name(response.data.image_name);
         })
+        
 
     } else {
         alert('file type not supported');
@@ -114,9 +118,9 @@ function Bg() {
                 </div>
 
                 {display_no_bg_tab==="yes" ? 
-                    <Original/>
+                    <Original image_name = {image_name}/>
                     :
-                    <No_Bg/>
+                    <No_Bg image_name = {image_name}/>
                 }
 
                 <div className="left_div_footer">

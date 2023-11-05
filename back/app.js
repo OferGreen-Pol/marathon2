@@ -1,5 +1,5 @@
 const express = require('express')
-const path = require('path');
+// const path = require('path');
 const app = express()
 const port = 5000
 
@@ -10,9 +10,13 @@ app.use(cors())
 
 
 var fileupload = require('express-fileupload'); //file handling, gives req.files functionality
-app.use(fileupload());
+// app.use(fileupload({useTempFiles:true}));  // added use of TempFiles, enables data on tempPath
+app.use(fileupload());  // instead of TempFile can use file.mv command.
 
-app.use(express.static('upload_image')); // use folder_name where we want to access
+app.use(express.static('upload_image')); // sets the contents of the folder to be accessed by filename without need for fullPath
+app.use(express.static('no_bg_image'));
+
+const send_to_api = require('./send_to_api'); // use send_to_api file under the same folder.
 
 
 app.get('/test', (req, res) => {
@@ -21,16 +25,34 @@ app.get('/test', (req, res) => {
 })
 
 app.post('/upload_file', (req, res) => {
-      console.log(req.files)
+    //   console.log(req.files)
 
-      const tempPath = req.files.path;
-      const targetPath = path.join(__dirname, "./upload_image/image.png");
+      // // using TempPath
+    //   const tempPath = req.files.path;
+    //   const targetPath = path.join(__dirname, "./upload_image/image.png");
 
-      console.log(tempPath);
-      console.log(targetPath);
+    // using file.mv
+    const newpath = __dirname + "/upload_image/";
+    const file = req.files.myFile;
+    const now = new Date().getTime();
+
+    const filename = now + file.name;
+
+    //   console.log(tempPath);
+    //   console.log(targetPath);
 
     //   fs.rename(tempPath, targetPath, err => {
     //     if (err) return handleError(err,res);
+    file.mv(`${newpath}${filename}`, (err) => {
+
+        send_to_api(`${newpath}${filename}`, filename);
+        console.log("apps.js__" + filename);
+        res.status(200).send({ image_name: filename, code: 200 });
+
+        if (err) {
+            res.status(500).send({ message: "File upload failed", code: 500 });
+        }
+    });
       
 
     //   res

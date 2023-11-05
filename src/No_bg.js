@@ -2,8 +2,10 @@ import './No_bg.css'
 
 import { useState , useRef } from "react";
 
-function No_Bg() {
+function No_Bg(props) {
     
+    console.log(props.image_name);
+    // debugger;
     const [color, setcolor] = useState("#000");
 
     const inputElement = useRef();
@@ -18,6 +20,7 @@ function No_Bg() {
     }
 
     return (
+        
         <div className="no_bg_tab">
             <span className='no_bg_tab_text'>אל תשכח להוריד את הקבצים שךף. הם ימחקו אוטומטית כשתצא מהדף</span>
             
@@ -28,7 +31,16 @@ function No_Bg() {
             
             </div>
             
-            <input type='color' onChange={change_color} className='input_color' ref={inputElement}/>
+            <input type='color' onChange={change_color} className='input_color' ref={inputElement}/> 
+            <div>
+                  
+                {props.image_name? 
+                <img src={"http://localhost:5000/no_bg_"+props.image_name}/>
+                :
+                ""
+                }
+                
+            </div>
         </div>
     )
 }
