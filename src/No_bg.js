@@ -1,10 +1,10 @@
 import './No_bg.css'
 
-import { useState , useRef } from "react";
+import { useState , useRef, useEffect } from "react";
 
 function No_Bg(props) {
     
-    console.log(props.image_name);
+    // console.log(props.image_name);
     // debugger;
     const [color, setcolor] = useState("#000");
 
@@ -15,13 +15,14 @@ function No_Bg(props) {
     }
 
     function change_color(e) {
-        // console.log(e.target.value);
+        console.log(e.target.value);
         setcolor(e.target.value);
+        props.send_color(e.target.value);
     }
 
     return (
         
-        <div className="no_bg_tab">
+        <div tabIndex={0} className="no_bg_tab">
             <span className='no_bg_tab_text'>אל תשכח להוריד את הקבצים שךף. הם ימחקו אוטומטית כשתצא מהדף</span>
             
             <div className='color_div' onClick={choose_color}>

@@ -15,6 +15,8 @@ function Bg() {
 
   const [image_name, setimage_name] = useState("");
 
+  const [color_to_api, setcolor_to_api] = useState("");
+
 //   const change_tab = () => {}
 
   function change_tab(e) {
@@ -71,8 +73,11 @@ function Bg() {
         formData.append(
             "myFile",
             data,
-            data.name
+            data.name,
+            color_to_api
         );
+
+        formData.append( "color_to_api", color_to_api );
 
         axios.post("http://localhost:5000/upload_file", formData, config)
         .then(function (response) {
@@ -94,6 +99,11 @@ function Bg() {
 //     console.log(response);
 // .then(res => {
 //     console.log(res); }
+  }
+
+  function send_color(color) {
+    // console.log(color);
+    setcolor_to_api(color);
   }
 
   return (
@@ -120,7 +130,7 @@ function Bg() {
                 {display_no_bg_tab==="yes" ? 
                     <Original image_name = {image_name}/>
                     :
-                    <No_Bg image_name = {image_name}/>
+                    <No_Bg image_name = {image_name} send_color = {send_color}/>
                 }
 
                 <div className="left_div_footer">
