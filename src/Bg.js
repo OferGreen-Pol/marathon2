@@ -5,6 +5,8 @@ import No_Bg from './No_bg';
 import Eula from './Eula';
 import axios from 'axios';
 
+import upload_img from './assets/Upload.png';   
+
 function Bg() {
 
   const inputElement = useRef();
@@ -16,6 +18,8 @@ function Bg() {
   const [image_name, setimage_name] = useState("");
 
   const [color_to_api, setcolor_to_api] = useState("");
+  
+  const [show_popup, setshow_popup] = useState(false);
 
 //   const change_tab = () => {}
 
@@ -106,6 +110,27 @@ function Bg() {
     setcolor_to_api(color);
   }
 
+  function download_image_func() {
+    fetch('http://localhost:5000/no_bg_'+image_name)
+    .then(response => response.blob().then(blob => {
+        let url = window.URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = '"http://localhost:5000/no_bg_"+image_name';
+        a.click();
+    }))
+  }
+
+  function close_popup(e) {
+    // cancel button and download button ref this function
+    // if the cancel button is clicked close popup.
+    if (e.target.classList.value ==='cancel') {
+        setshow_popup(false);
+    } else {
+        setshow_popup(true);
+    }
+  }
+
   return (
     <div className="Bg">
         <div className="header">   
@@ -145,7 +170,7 @@ function Bg() {
                     <div className="right_div_top">
                         <div className="right_div_top_text"> תמונה חינם</div>
                         <div className="right_div_top_subtext"> תצוגה מקדימה של תמונה 408x612</div>
-                        <button className="right_div_top_btn"> הורד</button>
+                        <button className="right_div_top_btn" onClick={close_popup}> הורד</button>
                     </div>
                     <div className="right_div_bottom"></div>
                         <div className="right_div_top_text"> תמונה חינם</div>
@@ -154,6 +179,18 @@ function Bg() {
                 </div>
             </div>
         </div>
+        
+        {show_popup ?
+        <div className='download_iamge_popup'>
+            <div> <img src={upload_img}/></div>
+            <div className='download_image_popup_text'> אישור להורדת תמונה</div>
+            <div className='download_image_popup_subtext'> האם להוריד את התמונה?</div>
+            <input type='checkbox' className='checkbox' />
+            <span> אני לא רובוט </span>
+            <button className='cancel' onClick={close_popup}> ביטול </button>
+            <button className='approve' onClick={download_image_func}> אישור </button>
+        </div>
+        : ""}
     </div>
   );
 }

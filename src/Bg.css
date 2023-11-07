@@ -167,3 +167,14 @@
     padding-left: 20px;
     cursor: pointer;
   }
+
+  .download_iamge_popup
+  {
+    border: 1px solid black;
+    background-color: white;
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    top: -380px;
+    height: 200px;
+  }
