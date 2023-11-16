@@ -168,8 +168,7 @@
     cursor: pointer;
   }
 
-  .download_iamge_popup
-  {
+  .download_iamge_popup {
     border: 1px solid black;
     background-color: white;
     width: 50%;
@@ -177,4 +176,32 @@
     position: relative;
     top: -380px;
     height: 200px;
+  }
+
+  .login_link_guest {
+    position: absolute;
+    margin: 10px;
+  }
+  
+  .login_link_guest span {
+    position: absolute;
+    color: white;
+  }
+
+  .login_link_guest img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .login_link_guest_login_btn{
+    position: absolute;
+    left: 63px;
+    top: 31px;
+  }
+
+  .login_link_guest_signup_btn {
+    position: absolute;
+    left: 118px;
+    top: 30px;
+    width: max-content;
   }

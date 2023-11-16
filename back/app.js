@@ -8,6 +8,14 @@ var fs = require('fs'); // filesystem (rename/move/copy functions)
 var cors = require('cors');1
 app.use(cors())
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
+const users = [];
+
+
 
 var fileupload = require('express-fileupload'); //file handling, gives req.files functionality
 // app.use(fileupload({useTempFiles:true}));  // added use of TempFiles, enables data on tempPath
@@ -22,6 +30,25 @@ const send_to_api = require('./send_to_api'); // use send_to_api file under the 
 app.get('/test', (req, res) => {
 //   console.log("server_test")
   res.send('Hello World1231!')
+})
+
+app.post('/login', (req, res) => {
+  try {
+    console.log(req.body)
+    users.push({
+        email: req.body.email,
+        password: req.body.password,
+    });
+      res.status(200).send({ msg: 'Hello World1231!', code: 200 });
+
+  } catch (err) {
+      res.status(500).send({ message: err.message, code: 500 });
+  }
+  
+
+  
+  
+  // res.send('Hello World1231!')
 })
 
 app.post('/upload_file', (req, res) => {
@@ -67,4 +94,16 @@ app.post('/upload_file', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
+//   bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
+//     // Store hash in your password DB.
+//     console.log("hash : " + hash);
+//     // Load hash from your password DB.
+//     bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+//     console.log("Plaintext password compare: " + result);
+//     });
+//     bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
+//       console.log("Other plaintext password compare: " + result);
+//     });
+  
+// });
 });

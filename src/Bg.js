@@ -3,9 +3,12 @@ import { useRef, useState } from 'react';
 import Original from './Original';
 import No_Bg from './No_bg';
 import Eula from './Eula';
+import LoginScreen from './LoginScreen';
+import SignUpScreen from './SignUpScreen';
 import axios from 'axios';
 
 import upload_img from './assets/Upload.png';   
+import guest_user_img from './assets/guest_user_img.png';
 
 function Bg() {
 
@@ -20,6 +23,14 @@ function Bg() {
   const [color_to_api, setcolor_to_api] = useState("");
   
   const [show_popup, setshow_popup] = useState(false);
+
+  const [showLogin, setShowLogin] = useState(false);
+
+  const [showSignup, setshowSignup] = useState(false);
+
+  const {loggedIn, setLoggedIn} = useState(false);
+
+  
 
 //   const change_tab = () => {}
 
@@ -121,6 +132,7 @@ function Bg() {
     }))
   }
 
+
   function close_popup(e) {
     // cancel button and download button ref this function
     // if the cancel button is clicked close popup.
@@ -130,6 +142,24 @@ function Bg() {
         setshow_popup(true);
     }
   }
+
+  const handleLoginButtonClick = () => {
+    setshowSignup(false);
+    setShowLogin(true);
+  };
+
+  const handleCloseLogin = () => {
+    setShowLogin(false);
+  };
+
+  const handleSignupButtonClick = () => {
+    setShowLogin(false);
+    setshowSignup(true);
+  };
+
+  const handleCloseSignup = () => {
+    setshowSignup(false);
+  };
 
   return (
     <div className="Bg">
@@ -191,7 +221,33 @@ function Bg() {
             <button className='approve' onClick={download_image_func}> אישור </button>
         </div>
         : ""}
-    </div>
+
+      {/* login_section */}
+      {loggedIn ?
+        
+      <div>
+        
+      </div>
+      
+      : 
+
+      <div className='login_link_guest'>
+        <img src={guest_user_img}/>
+        <span>Guest</span>
+        <div>
+          <button className='login_link_guest_login_btn' onClick={handleLoginButtonClick}>Login</button>
+          <button className='login_link_guest_signup_btn' onClick={handleSignupButtonClick}>Sign up</button>
+        </div>
+        
+        
+      </div>}
+        
+
+
+      {showLogin && <LoginScreen onClose={handleCloseLogin} />}
+      {showSignup && <SignUpScreen onClose={handleCloseSignup} />}
+
+    </div> // end main_div
   );
 }
 
